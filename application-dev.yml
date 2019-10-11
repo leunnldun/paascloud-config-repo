@@ -1,0 +1,14 @@
+management:
+  security:
+    enabled: false
+spring:
+  redis:
+    host: 127.0.0.1
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+  zipkin:
+    sender:
+      type: rabbit
+  sleuth:
+    sampler:
+      percentage: 1.0

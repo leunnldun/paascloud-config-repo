@@ -1,0 +1,35 @@
+
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf8&useSSL=false
+security:
+  oauth2:
+    jwtSigningKey: sunshine
+    resource:
+      filter-order: 3
+      id: sunshine-resouce-uac
+      jwt:
+        key-uri: http://localhost:9000/uac/oauth/token_key
+sunshine:
+  security:
+    oauth2:
+      jwtSigningKey: sunshine
+      tokenStore: jwt
+      clients[0]:
+        clientId: sofmit-client
+        clientSecret: sofmit_secret
+        accessTokenValidateSeconds: 30000
+        refreshTokenValiditySeconds: 30000
+        scope: "*"
+mybatis:
+  type-aliases-package: com.sunshine.provider.model.domain
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+mapper:
+  mappers: com.sunshine.core.mybatis.MyMapper
+  not-empty: false
+  identity: MYSQL
